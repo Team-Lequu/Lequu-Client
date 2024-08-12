@@ -11,12 +11,13 @@ import {
 const usePatchNickname = (props: usePatchNicknameProps) => {
   const { handleSetIsValid, handleSetIsActive, nickname } = props;
   const { state } = useLocation();
+  const tempToken = state.tempToken;
 
   const navigate = useNavigate();
 
   const mutation = useMutation({
     mutationFn: async ({ nickname }: patchNicknameProps) => {
-      return await patchNickname(nickname);
+      return await patchNickname(nickname, tempToken);
     },
     onError: (err: AxiosError) => {
       const code = err.response?.status;
@@ -32,7 +33,7 @@ const usePatchNickname = (props: usePatchNicknameProps) => {
       }
     },
     onSuccess: () => {
-      sessionStorage.setItem('token', state);
+      sessionStorage.setItem('token', state.tempToken);
       sessionStorage.setItem('nickname', nickname);
       navigate('/', { state: { step: 1 } });
     },
