@@ -5,9 +5,6 @@ import LoginBtnContainer from '../components/LoginBtnContainer';
 import * as S from './Login.style';
 
 function Login() {
-  const ref = document.referrer;
-  sessionStorage.setItem('url', ref);
-
   return (
     <S.LoginWrapper>
       <Header />
