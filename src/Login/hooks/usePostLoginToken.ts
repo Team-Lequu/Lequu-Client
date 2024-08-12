@@ -14,7 +14,7 @@ const usePostLoginToken = () => {
       const { tokenDto, nickname } = data;
 
       if (nickname === null) {
-        navigate('/register', { state: tokenDto.accessToken });
+        navigate('/register', { state: { tempToken: tokenDto.accessToken } });
       } else {
         sessionStorage.setItem('token', tokenDto.accessToken);
         sessionStorage.setItem('nickname', nickname);
