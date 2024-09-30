@@ -1,29 +1,36 @@
 import * as Sentry from '@sentry/react';
 import { AxiosError } from 'axios';
-import { Suspense } from 'react';
+import { lazy, Suspense } from 'react';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 
-import BoundaryErrorPage from './components/common/BoundaryErrorPage';
-import ClearToken from './components/common/ClearToken/ClearToken';
-import ErrorPage from './components/common/ErrorPage';
 import LoadingPage from './components/common/LoadingPage';
-import CreateBook from './CreateBook/page';
-import DetailPage from './Detail/page/DetailPage';
-import EditNickname from './EditNickname/page';
-import Enter from './Enter/page';
-import HealthTest from './HealthTest';
-import History from './History/page';
-import HistoryEnter from './HistoryEnter/page';
-import LecueNotePage from './LecueNote/page/LeceuNotePage';
-import LoginCallback from './Login/components/LoginCallback/LoginCallback';
 import Login from './Login/page';
-import Mypage from './Mypage/page';
-import Register from './Register/page';
-import SelectBookPage from './SelectBook/page/SelectBookPage';
-import SelectView from './SelectView/SelectView';
-import StickerAttach from './StickerAttach/page';
-import StickerPack from './StickerPack/page/StickerPack';
-import TargetPage from './Target/page/TargetPage';
+
+const BoundaryErrorPage = lazy(
+  () => import('./components/common/BoundaryErrorPage'),
+);
+const ClearToken = lazy(
+  () => import('./components/common/ClearToken/ClearToken'),
+);
+const ErrorPage = lazy(() => import('./components/common/ErrorPage'));
+const CreateBook = lazy(() => import('./CreateBook/page'));
+const DetailPage = lazy(() => import('./Detail/page/DetailPage'));
+const EditNickname = lazy(() => import('./EditNickname/page'));
+const Enter = lazy(() => import('./Enter/page'));
+const HealthTest = lazy(() => import('./HealthTest'));
+const History = lazy(() => import('./History/page'));
+const HistoryEnter = lazy(() => import('./HistoryEnter/page'));
+const LecueNotePage = lazy(() => import('./LecueNote/page/LeceuNotePage'));
+const LoginCallback = lazy(
+  () => import('./Login/components/LoginCallback/LoginCallback'),
+);
+const Mypage = lazy(() => import('./Mypage/page'));
+const Register = lazy(() => import('./Register/page'));
+const SelectBookPage = lazy(() => import('./SelectBook/page/SelectBookPage'));
+const SelectView = lazy(() => import('./SelectView/SelectView'));
+const StickerAttach = lazy(() => import('./StickerAttach/page'));
+const StickerPack = lazy(() => import('./StickerPack/page/StickerPack'));
+const TargetPage = lazy(() => import('./Target/page/TargetPage'));
 
 function Router() {
   interface FallbackProps {
