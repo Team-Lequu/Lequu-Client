@@ -66,7 +66,7 @@ function TargetPage() {
     navigate('/select-book', {
       state: { presignedFileName: presignedFileName, name: name },
     });
-  }, []);
+  }, [name, fileData, presignedFileName]);
 
   const handleEscapeModal = useCallback(() => {
     setEscapeModal(true);
