@@ -22,8 +22,8 @@ function DetailPage() {
     : useGetBookDetail(bookUuid);
   const postMutation = usePostStickerState(bookUuid);
 
-  const setEditableStateFalse = () => {
-    setIsEditable(false);
+  const setEditableStateTrue = () => {
+    setIsEditable(true);
   };
 
   return isLoading || postMutation.isLoading ? (
@@ -39,7 +39,7 @@ function DetailPage() {
             bookId={bookDetail.bookId}
             bookUuid={bookUuid}
             isEditable={isEditable}
-            setEditableStateFalse={setEditableStateFalse}
+            setEditableStateTrue={setEditableStateTrue}
             noteNum={bookDetail.noteNum}
             backgroundColor={bookDetail.bookBackgroundColor}
             noteList={bookDetail.noteList}
