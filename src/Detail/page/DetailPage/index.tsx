@@ -12,7 +12,7 @@ import useGetBookDetailLogin from '../../hooks/useGetBookDetailLogin';
 import * as S from './DetailPage.style';
 
 function DetailPage() {
-  const [isEditable, setIsEditable] = useState(true);
+  const [isEditable, setIsEditable] = useState(false);
 
   const isLogin = sessionStorage.getItem('token');
 
