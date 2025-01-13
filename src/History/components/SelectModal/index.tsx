@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 import { IcMypageArrowRight, IcMypageTouchbar } from '../../../assets';
 import { optionList } from '../../constants/optionList';
@@ -19,7 +20,8 @@ function SelectModal({
   selectedModalOptionList,
 }: SelectModalProps) {
   const [animationDirection, setAnimationDirection] = useState('slideUp');
-
+  const navigate = useNavigate();
+  
   const handleCloseModal = () => {
     setAnimationDirection('slideDown');
     setTimeout(() => {
@@ -46,6 +48,7 @@ function SelectModal({
                 onClick={() => {
                   selectOption(item);
                   handleCloseModal();
+                  navigate(`/mypage/history?option=${item}`)
                 }}
               >
                 <S.OptionListItemText>{optionList[item]}</S.OptionListItemText>

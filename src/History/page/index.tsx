@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useLocation } from 'react-router-dom';
+import { useNavigate, useSearchParams } from 'react-router-dom';
 
 import { IcArrowDownBlack } from '../../assets';
 import Header from '../../components/common/Header';
@@ -11,13 +11,19 @@ import { optionList } from '../constants/optionList';
 import * as S from './History.style';
 
 function History() {
-  const location = useLocation();
+  const navigate = useNavigate();
+  const [searchParams] = useSearchParams();
+  const pageState = Number(searchParams.get('option')); 
 
   const [modalOn, setModalOn] = useState(false);
-  const [selectedOption, setSelectedOption] = useState<number>(location.state);
+  const [selectedOption, setSelectedOption] = useState<number>(pageState);
   const handleClickHistorySelectButton = () => {
     setModalOn(true);
   };
+
+  const handleHeaderBackBtn = () => {
+      navigate('/mypage/select-history');
+  }
 
   return (
     <React.Fragment>
@@ -31,7 +37,7 @@ function History() {
           )}
         />
       )}
-      <Header headerTitle="내 기록보기" />
+      <Header headerTitle="내 기록보기" handleFn={handleHeaderBackBtn}/>
       <S.HistoryPageBodyWrapper>
         <S.HistorySelectButton
           type="button"
