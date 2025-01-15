@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 
 import { IcArrowDownBlack } from '../../assets';
@@ -14,18 +14,10 @@ function History() {
   const SECTION_LIST = ['favorite', 'myBook', 'myLetter'];
 
   const navigate = useNavigate();
-  const { section } = useParams();
+  const { section } = useParams() as { section: string };
 
   const [modalOn, setModalOn] = useState(false);
-  const [selectedOption, setSelectedOption] = useState<string>(
-    section ? section : '',
-  );
-
-  useEffect(() => {
-    if (section) {
-      setSelectedOption(section);
-    }
-  }, [section]);
+  const [selectedOption, setSelectedOption] = useState<string>(section);
 
   const handleClickHistorySelectButton = () => {
     setModalOn(true);
