@@ -36,9 +36,13 @@ function Enter() {
     }
   };
 
+  const handleHeaderBackBtn = () => {
+    navigate('/');
+  };
+
   return (
     <React.Fragment>
-      <Header headerTitle="마이페이지" />
+      <Header headerTitle="마이페이지" handleFn={handleHeaderBackBtn} />
       {isLogin ? (
         <S.MypageBodyWrapper>
           <S.NicknameWrapper>
