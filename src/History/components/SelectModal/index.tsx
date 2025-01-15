@@ -9,8 +9,8 @@ import * as S from './SelectModal.style';
 interface SelectModalProps {
   modalOn: boolean;
   closeModal: () => void;
-  selectOption: (option: number) => void;
-  selectedModalOptionList: Array<number>;
+  selectOption: (section: string) => void;
+  selectedModalOptionList: Array<string>;
 }
 
 function SelectModal({
@@ -21,7 +21,7 @@ function SelectModal({
 }: SelectModalProps) {
   const [animationDirection, setAnimationDirection] = useState('slideUp');
   const navigate = useNavigate();
-  
+
   const handleCloseModal = () => {
     setAnimationDirection('slideDown');
     setTimeout(() => {
@@ -48,7 +48,7 @@ function SelectModal({
                 onClick={() => {
                   selectOption(item);
                   handleCloseModal();
-                  navigate(`/mypage/history?option=${item}`)
+                  navigate(`/mypage/history/${item}`);
                 }}
               >
                 <S.OptionListItemText>{optionList[item]}</S.OptionListItemText>

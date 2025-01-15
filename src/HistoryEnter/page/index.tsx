@@ -14,7 +14,7 @@ function HistoryEnter() {
 
   const handleHeaderBackBtn = () => {
     navigate('/mypage');
-  }
+  };
 
   const HistoryEnterList = useMemo(
     () => [
@@ -22,19 +22,19 @@ function HistoryEnter() {
         title: '즐겨찾기한 레큐북',
         variant: 'book',
         image: <ImgMypageFavoriteLecueBook />,
-        handleClickTab: () => navigate('/mypage/history?option=1'),
+        handleClickTab: () => navigate('/mypage/history/favorite'),
       },
       {
         title: '내가 만든 레큐북',
         variant: 'book',
         image: <ImgMypageMakeLecueBook />,
-        handleClickTab: () => navigate('/mypage/history?option=2'),
+        handleClickTab: () => navigate('/mypage/history/myBook'),
       },
       {
         title: '내가 남긴 레터',
         variant: 'letter',
         image: <ImgMypageLetter />,
-        handleClickTab: () => navigate('/mypage/history?option=3'),
+        handleClickTab: () => navigate('/mypage/history/myLetter'),
       },
     ],
     [],
@@ -42,7 +42,7 @@ function HistoryEnter() {
 
   return (
     <React.Fragment>
-      <Header headerTitle="내 기록보기" handleFn={handleHeaderBackBtn}/>
+      <Header headerTitle="내 기록보기" handleFn={handleHeaderBackBtn} />
       <S.HistoryEnterPageBodyWrapper>
         {HistoryEnterList.map((element) => {
           return (

@@ -63,7 +63,7 @@ function Router() {
               <Route path="" element={<Enter />} />
               <Route path="edit-nickname" element={<EditNickname />} />
               <Route path="select-history" element={<HistoryEnter />} />
-              <Route path="history" element={<History />} />
+              <Route path="history/:section" element={<History />} />
             </Route>
             <Route path="/lecue-book/:bookUuid" element={<DetailPage />} />
             <Route path="/target" element={<TargetPage />} />

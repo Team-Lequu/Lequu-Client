@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { useNavigate, useSearchParams } from 'react-router-dom';
+import React, { useEffect, useState } from 'react';
+import { useNavigate, useParams } from 'react-router-dom';
 
 import { IcArrowDownBlack } from '../../assets';
 import Header from '../../components/common/Header';
@@ -11,19 +11,29 @@ import { optionList } from '../constants/optionList';
 import * as S from './History.style';
 
 function History() {
+  const SECTION_LIST = ['favorite', 'myBook', 'myLetter'];
+
   const navigate = useNavigate();
-  const [searchParams] = useSearchParams();
-  const pageState = Number(searchParams.get('option')); 
+  const { section } = useParams();
 
   const [modalOn, setModalOn] = useState(false);
-  const [selectedOption, setSelectedOption] = useState<number>(pageState);
+  const [selectedOption, setSelectedOption] = useState<string>(
+    section ? section : '',
+  );
+
+  useEffect(() => {
+    if (section) {
+      setSelectedOption(section);
+    }
+  }, [section]);
+
   const handleClickHistorySelectButton = () => {
     setModalOn(true);
   };
 
   const handleHeaderBackBtn = () => {
-      navigate('/mypage/select-history');
-  }
+    navigate('/mypage/select-history');
+  };
 
   return (
     <React.Fragment>
@@ -31,13 +41,13 @@ function History() {
         <SelectModal
           modalOn={modalOn}
           closeModal={() => setModalOn(false)}
-          selectOption={(option: number) => setSelectedOption(option)}
-          selectedModalOptionList={[1, 2, 3].filter(
-            (num) => num !== selectedOption,
+          selectOption={(section: string) => setSelectedOption(section)}
+          selectedModalOptionList={SECTION_LIST.filter(
+            (item) => item !== selectedOption,
           )}
         />
       )}
-      <Header headerTitle="내 기록보기" handleFn={handleHeaderBackBtn}/>
+      <Header headerTitle="내 기록보기" handleFn={handleHeaderBackBtn} />
       <S.HistoryPageBodyWrapper>
         <S.HistorySelectButton
           type="button"
@@ -48,13 +58,12 @@ function History() {
           </S.CurrentHistoryOption>
           <IcArrowDownBlack />
         </S.HistorySelectButton>
-        {
+        {section &&
           {
-            1: <MyFavoriteBookList />,
-            2: <MyLecueBookList />,
-            3: <MyLetterList />,
-          }[selectedOption]
-        }
+            favorite: <MyFavoriteBookList />,
+            myBook: <MyLecueBookList />,
+            myLetter: <MyLetterList />,
+          }[section]}
       </S.HistoryPageBodyWrapper>
     </React.Fragment>
   );
