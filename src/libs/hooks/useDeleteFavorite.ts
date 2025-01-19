@@ -48,7 +48,10 @@ const useDeleteFavorite = (state: string, bookUuid?: string) => {
       handleRefetchQueries(state, bookUuid);
     },
   });
-  return mutation.mutate;
+  return {
+    deleteFavoriteMutation: mutation.mutate,
+    isDeleteLoading: mutation.isLoading,
+  };
 };
 
 export default useDeleteFavorite;
