@@ -36,7 +36,10 @@ const usePostFavorite = (location: string, bookUuid?: string) => {
       handleRefetchQueries(location, bookUuid);
     },
   });
-  return mutation.mutate;
+  return {
+    postFavoriteMutation: mutation.mutate,
+    isPostLoading: mutation.isLoading,
+  };
 };
 
 export default usePostFavorite;

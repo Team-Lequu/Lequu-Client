@@ -33,11 +33,22 @@ function BookInfoBox({
 }: BookInfoBoxProps) {
   const isLogin = sessionStorage.getItem('token');
 
-  const postFavoriteMutation = usePostFavorite('lecueBookDetail', bookUuid);
-  const deleteFavoriteMutation = useDeleteFavorite('lecueBookDetail', bookUuid);
+  const { postFavoriteMutation, isPostLoading } = usePostFavorite(
+    'lecueBookDetail',
+    bookUuid,
+  );
+  const { deleteFavoriteMutation, isDeleteLoading } = useDeleteFavorite(
+    'lecueBookDetail',
+    bookUuid,
+  );
+
+  const isLoading = isPostLoading || isDeleteLoading;
 
   const handleFavoriteBtn = () => {
-    isFavorite ? deleteFavoriteMutation(bookId) : postFavoriteMutation(bookId);
+    if (!isLoading)
+      isFavorite
+        ? deleteFavoriteMutation(bookId)
+        : postFavoriteMutation(bookId);
   };
 
   return (
