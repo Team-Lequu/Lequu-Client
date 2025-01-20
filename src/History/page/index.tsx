@@ -5,10 +5,11 @@ import { IcArrowDownBlack } from '../../assets';
 import Header from '../../components/common/Header';
 import SelectModal from '../components/SelectModal';
 import { optionList } from '../constants/optionList';
+import { HistorySection } from '../types/historyType';
 import * as S from './History.style';
 
 function History() {
-  const SECTION_LIST = ['favorite', 'mybook', 'myletter'];
+  const SECTION_LIST: HistorySection[] = ['favorite', 'mybook', 'myletter'];
 
   const navigate = useNavigate();
   const url = useLocation().pathname.split('/');
@@ -31,7 +32,7 @@ function History() {
         <SelectModal
           modalOn={modalOn}
           closeModal={() => setModalOn(false)}
-          selectOption={(section: string) => setSelectedOption(section)}
+          selectOption={(section: HistorySection) => setSelectedOption(section)}
           selectedModalOptionList={SECTION_LIST.filter(
             (item) => item !== selectedOption,
           )}
