@@ -3,14 +3,15 @@ import { useNavigate } from 'react-router-dom';
 
 import { IcMypageArrowRight, IcMypageTouchbar } from '../../../assets';
 import { optionList } from '../../constants/optionList';
+import { HistorySection } from '../../types/historyType';
 import SelectModalPortal from '../SelectModalPortal';
 import * as S from './SelectModal.style';
 
 interface SelectModalProps {
   modalOn: boolean;
   closeModal: () => void;
-  selectOption: (section: string) => void;
-  selectedModalOptionList: Array<string>;
+  selectOption: (section: HistorySection) => void;
+  selectedModalOptionList: Array<HistorySection>;
 }
 
 function SelectModal({

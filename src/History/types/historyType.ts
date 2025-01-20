@@ -38,3 +38,5 @@ export interface HistoryEmptyViewProps {
   topLineText: string;
   bottomLineText: string;
 }
+
+export type HistorySection = 'favorite' | 'mybook' | 'myletter';
