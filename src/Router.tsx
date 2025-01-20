@@ -4,6 +4,9 @@ import { lazy, Suspense } from 'react';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 
 import LoadingPage from './components/common/LoadingPage';
+import MyFavoriteBookList from './History/components/MyFavoriteBookList';
+import MyLecueBookList from './History/components/MyLecueBookList';
+import MyLetterList from './History/components/MyLetterList';
 import Login from './Login/page';
 
 const BoundaryErrorPage = lazy(
@@ -63,7 +66,11 @@ function Router() {
               <Route path="" element={<Enter />} />
               <Route path="edit-nickname" element={<EditNickname />} />
               <Route path="select-history" element={<HistoryEnter />} />
-              <Route path="history/:section" element={<History />} />
+              <Route path="history" element={<History />}>
+                <Route path="favorite" element={<MyFavoriteBookList />} />
+                <Route path="mybook" element={<MyLecueBookList />} />
+                <Route path="myletter" element={<MyLetterList />} />
+              </Route>
             </Route>
             <Route path="/lecue-book/:bookUuid" element={<DetailPage />} />
             <Route path="/target" element={<TargetPage />} />

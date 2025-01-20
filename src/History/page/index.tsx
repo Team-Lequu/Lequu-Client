@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useNavigate, useParams } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 
 import { IcArrowDownBlack } from '../../assets';
 import Header from '../../components/common/Header';
@@ -11,10 +11,11 @@ import { optionList } from '../constants/optionList';
 import * as S from './History.style';
 
 function History() {
-  const SECTION_LIST = ['favorite', 'myBook', 'myLetter'];
+  const SECTION_LIST = ['favorite', 'mybook', 'myletter'];
 
   const navigate = useNavigate();
-  const { section } = useParams() as { section: string };
+  const url = useLocation().pathname.split('/');
+  const section = url[url.length - 1];
 
   const [modalOn, setModalOn] = useState(false);
   const [selectedOption, setSelectedOption] = useState<string>(section);
@@ -53,8 +54,8 @@ function History() {
         {section &&
           {
             favorite: <MyFavoriteBookList />,
-            myBook: <MyLecueBookList />,
-            myLetter: <MyLetterList />,
+            mybook: <MyLecueBookList />,
+            myletter: <MyLetterList />,
           }[section]}
       </S.HistoryPageBodyWrapper>
     </React.Fragment>
