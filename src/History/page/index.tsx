@@ -1,11 +1,8 @@
 import React, { useState } from 'react';
-import { useLocation, useNavigate } from 'react-router-dom';
+import { Outlet, useLocation, useNavigate } from 'react-router-dom';
 
 import { IcArrowDownBlack } from '../../assets';
 import Header from '../../components/common/Header';
-import MyFavoriteBookList from '../components/MyFavoriteBookList';
-import MyLecueBookList from '../components/MyLecueBookList';
-import MyLetterList from '../components/MyLetterList';
 import SelectModal from '../components/SelectModal';
 import { optionList } from '../constants/optionList';
 import * as S from './History.style';
@@ -51,12 +48,7 @@ function History() {
           </S.CurrentHistoryOption>
           <IcArrowDownBlack />
         </S.HistorySelectButton>
-        {section &&
-          {
-            favorite: <MyFavoriteBookList />,
-            mybook: <MyLecueBookList />,
-            myletter: <MyLetterList />,
-          }[section]}
+        <Outlet />
       </S.HistoryPageBodyWrapper>
     </React.Fragment>
   );
