@@ -25,8 +25,10 @@ function MyLecueBook(props: LecueBookProps) {
   const navigate = useNavigate();
 
   const deleteBookMutation = useDeleteMyBook();
-  const postFavoriteMutation = usePostFavorite('lecueBook');
-  const deleteFavoriteMutation = useDeleteFavorite('lecueBook');
+  const { postFavoriteMutation: postFavoriteMutation } =
+    usePostFavorite('lecueBook');
+  const { deleteFavoriteMutation: deleteFavoriteMutation } =
+    useDeleteFavorite('lecueBook');
 
   const convertNoteCount = (noteNum: number) => {
     setNoteCount(noteNum.toLocaleString());
